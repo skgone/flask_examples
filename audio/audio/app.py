@@ -22,10 +22,7 @@ def upload():
     if request.method == 'POST':
         f = request.files.get('file')
         f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
-        # filename = f.filename
     return render_template('upload.html')
-    # else:
-    #     return render_template('upload.html')
 
 
 @app.route('/')
@@ -34,7 +31,7 @@ def hello():
 
 
 @app.route('/upload/<filename>')
-def dispaly_file(filename):
+def display_file(filename):
     return send_from_directory(app.config['UPLOADED_PATH'], filename=filename)
 
 
