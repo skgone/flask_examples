@@ -31,12 +31,20 @@ def hello():
 
 
 @app.route('/upload/<filename>')
-def display_file(filename):
+def send_file(filename):
     return send_from_directory(app.config['UPLOADED_PATH'], filename=filename)
 
 
+
+@app.route('/display')
+def get_file():
+    audio_names = os.listdir('./uploads')
+    print(audio_names)
+    return render_template("display.html", audio_names=audio_names)
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=7000, debug=True)
 
 
 
