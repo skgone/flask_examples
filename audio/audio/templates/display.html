@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<hr>
 
-{{audio_names}}
+<!--{{audio_names}}-->
 <hr>
 {% for audio_name in audio_names %}
 <div class="col-lg-3 col-md-4 col-xs-6 thumb">
     <audio controls src="{{ url_for('send_file', filename= audio_name) }}"></audio>
+    <p>predict</p>
+    <p>true_label</p>
 </div>
 {% endfor %}
 <p><a href="/upload">Back to upload</a></p>

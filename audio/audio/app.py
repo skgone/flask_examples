@@ -35,11 +35,13 @@ def send_file(filename):
     return send_from_directory(app.config['UPLOADED_PATH'], filename=filename)
 
 
-
 @app.route('/display')
 def get_file():
-    audio_names = os.listdir('./uploads')
-    print(audio_names)
+    audio_names=[]
+    for file in os.listdir('./uploads'):
+        if file.endswith('.wav'):
+            audio_names.append(file)
+    print("{} files was uploaded".format(len(audio_names)))
     return render_template("display.html", audio_names=audio_names)
 
 
