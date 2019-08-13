@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Display_all</title>
 </head>
 <body>
-{% if session.filenames %}
-{% for filename in session.filenames %}
+{% if filenames %}
+{% for filename in filenames %}
     <audio controls src="{{ url_for('send_file', filename= filename) }}"></audio>
     <p>predict</p>
     <p>true_label:{{filename}}</p>
 {% endfor %}
 {% endif %}
-<a href="{{url_for('display_all')}}">display_all</a>
 </body>
 </html>
