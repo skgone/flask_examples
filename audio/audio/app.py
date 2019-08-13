@@ -46,12 +46,18 @@ def send_file(filename):
 
 @app.route('/display')
 def display():
-    # audio_names=[]
-    # for file in os.listdir('./uploads'):
-    #     if file.endswith('.wav'):
-    #         audio_names.append(file)
-    # print("{} files was uploaded".format(len(audio_names)))
     return render_template("display.html")
+
+
+@app.route('/display_all')
+def display_all():
+    audio_names=[]
+    for file in os.listdir('./uploads'):
+        if file.endswith('.wav'):
+            audio_names.append(file)
+    print("{} files was uploaded".format(len(audio_names)))
+    return render_template("display_all.html",
+                           filenames=audio_names)
 
 
 if __name__ == '__main__':
