@@ -6,7 +6,8 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+app.secret_key = b'_5#y2L"F4yueliang'
+
 
 app.config.update(
     UPLOADED_PATH=os.path.join(basedir, 'uploads'),
@@ -60,8 +61,13 @@ def display_all():
                            filenames=audio_names)
 
 
-if __name__ == '__main__':
-    app.run(port=7000, debug=True)
+@app.route('/real_time_recoder')
+def recoder():
+    return render_template("real_time_recoder.html")
 
+
+if __name__ == '__main__':
+    #app.run(host='0.0.0.0', port=7000)
+    app.run(port=7000)
 
 
