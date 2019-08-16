@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Upload Test</title>
+</head>
+<body>
+<button>Upload File</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    (function () {
+        'use strict';
+
+        var onClickButton = function () {
+            var html =
+                    '<form id="uploadForm" class="upload-form" style="display: none;">' +
+                    '<input id="theFile" name="the_file" type="file">' +
+                    '</form>';
+            $('body').append(html);
+            $('#theFile').on('change', uploadFile).click();
+        };
+
+        var uploadFile = function () {
+            var formData = new FormData($('#uploadForm')[0]);
+            formData.append('other_data', 999);
+            $.ajax({
+                url: '/upload',
+                type: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                timeout: 10000
+            }).done(function () {
+                console.log('done');
+            }).fail(function () {
+                console.log('fail');
+            }).then(function () {
+                $('#uploadForm').remove();
+            });
+
+        };
+
+        $('button').on('click', onClickButton);
+    })();
+</script>
+</body>
+</html>
